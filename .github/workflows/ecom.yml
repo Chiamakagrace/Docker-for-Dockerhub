@@ -19,8 +19,8 @@ jobs:
     - name: buildimg
       run: |
         docker build -t reactappimg:${GITHUB_RUN_NUMBER} .
-        docker tag reactappimg:${GITHUB_RUN_NUMBER} frankisinfotech/reactapp:${GITHUB_RUN_NUMBER}
-        docker push frankisinfotech/reactapp:${GITHUB_RUN_NUMBER}
+        docker tag reactappimg:${GITHUB_RUN_NUMBER} chiamakagrace/reactapp:${GITHUB_RUN_NUMBER}
+        docker push chiamakgrace/reactapp:${GITHUB_RUN_NUMBER}
 
   # install_kubectl:
   #   needs: buildimg
