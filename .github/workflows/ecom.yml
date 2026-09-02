@@ -21,7 +21,28 @@ jobs:
         docker build -t reactappimg:${GITHUB_RUN_NUMBER} .
         docker tag reactappimg:${GITHUB_RUN_NUMBER} chiamakagrace/reactapp:${GITHUB_RUN_NUMBER}
         docker push chiamakagrace/reactapp:${GITHUB_RUN_NUMBER}
+  build-and-push-pub-ecr:
+    needs: buildimg
+    runs-on: ubuntu-latest
+    steps:
+   
+      - name: Login to Public ECR
+        uses: docker/login-action@v3
+        with: 
+          registry: public.ecr.aws
+          username: ${{ secrets.ACCESS_KEY }}
+          password: ${{ secrets.SECRET_ACCESS_KEY }}
+        env:
+          aws-region: ${{ secrets.REGION }} 
 
+      - name: Code Checkout
+        uses: actions/checkout@v4
+
+      - name: Build Image
+        run: |
+          docker build -t react_pub .
+          docker tag react_pub:latest public.ecr.aws/l9u6h2c8/react_pub:${GITHUB_RUN_NUMBER}
+          docker push public.ecr.aws/l9u6h2c8/react_pub:${GITHUB_RUN_NUMBER}
   # install_kubectl:
   #   needs: buildimg
     
