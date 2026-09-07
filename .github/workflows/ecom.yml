@@ -18,9 +18,9 @@ jobs:
 
     - name: buildimg
       run: |
-        docker build -t reactappimg:${GITHUB_RUN_NUMBER} .
-        docker tag reactappimg:${GITHUB_RUN_NUMBER} chiamakagrace/reactapp:${GITHUB_RUN_NUMBER}
-        docker push chiamakagrace/reactapp:${GITHUB_RUN_NUMBER}
+        sudo docker build -t reactappimg:${GITHUB_RUN_NUMBER} .
+        sudo docker tag reactappimg:${GITHUB_RUN_NUMBER} chiamakagrace/reactapp:${GITHUB_RUN_NUMBER}
+        sudo docker push chiamakagrace/reactapp:${GITHUB_RUN_NUMBER}
   # build-and-push-pub-ecr:
   #   needs: buildimg
   #   runs-on: ubuntu-latest
